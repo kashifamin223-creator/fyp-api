@@ -1,0 +1,6 @@
+@fyp_HostAddress = http://localhost:5269
+
+GET {{fyp_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
