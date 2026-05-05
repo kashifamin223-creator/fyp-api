@@ -1,5 +1,4 @@
-﻿using common;
-using Common;
+﻿using Common;
 using DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -11,10 +10,31 @@ namespace fyp.Controllers
     {
         private readonly InternDAL _dal;
         private readonly GraduateDAL _Gdal;
-        public PatientController(InternDAL dal, GraduateDAL Gdal)
+        private readonly TraumaDAL _Tdal;
+        private readonly HarassmentDAL _Hdal;
+        private readonly ChildDAL _Cdal;
+        private readonly OldDAL _Odal;
+        private readonly EmployedDAL _Edal;
+        private readonly UnemployedDAL _Udal;
+        private readonly ParentsDAL _Pdal;
+        private readonly SignupDAL _Sdal;
+        private readonly LoginDAL _Ldal;
+
+
+        public PatientController(InternDAL dal, GraduateDAL Gdal, TraumaDAL Tdal, HarassmentDAL Hdal, ChildDAL Cdal, OldDAL Odal, EmployedDAL Edal, UnemployedDAL Udal, ParentsDAL Pdal,SignupDAL Sdal, LoginDAL Ldal)
         {
             _dal = dal;
             _Gdal = Gdal;
+            _Tdal = Tdal;
+            _Hdal = Hdal;
+            _Cdal = Cdal;
+            _Odal = Odal;
+            _Edal = Edal;
+            _Udal = Udal;
+            _Pdal = Pdal;
+            _Sdal = Sdal;
+            _Ldal = Ldal;
+
         }
 
         [HttpPost]
@@ -63,7 +83,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = OldDAL.SaveOld(old);
+            bool iSaved = _Odal.InsertOld(old);
             if (iSaved)
             {
                 return Ok(old); // response me data return
@@ -88,7 +108,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = EmployedDAL.SaveEmployed(employed);
+            bool iSaved = _Edal.InsertEmployed(employed);
             if (iSaved)
             {
                 return Ok(employed); // response me data return
@@ -112,7 +132,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = UnemployedDAL.SaveUnemployed(unemployed);
+            bool iSaved = _Udal.SaveUnemployed(unemployed);
             if (iSaved)
             {
                 return Ok(unemployed); // response me data return
@@ -136,7 +156,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = ParentsDAL.SaveParents(parents);
+            bool iSaved = _Pdal.InsertParents(parents);
             if (iSaved)
             {
                 return Ok(parents); // response me data return
@@ -159,8 +179,7 @@ namespace fyp.Controllers
             {
                 return BadRequest("Invalid Data");
             }
-
-            bool iSaved = TraumaDAL.SaveTrauma(trauma);
+            bool iSaved = _Tdal.SaveTrauma(trauma);
             if (iSaved)
             {
                 return Ok(trauma); // response me data return
@@ -184,7 +203,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = HarassmentDAL.SaveHarassment(harassment);
+            bool iSaved = _Hdal.SaveHarassment(harassment);
             if (iSaved)
             {
                 return Ok(harassment); // response me data return
@@ -208,7 +227,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = ChildDAL.SaveChild(child);
+            bool iSaved = _Cdal.SaveChild(child);
             if (iSaved)
             {
                 return Ok(child); // response me data return
@@ -232,7 +251,8 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = SignupDAL.SaveSignup(signup);
+            var signupResult = _Sdal.InsertSignup(signup);
+            bool iSaved = signupResult.IsSaved;
             if (iSaved)
             {
                 return Ok(signup); // response me data return
@@ -257,7 +277,7 @@ namespace fyp.Controllers
                 return BadRequest("Invalid Data");
             }
 
-            bool iSaved = LoginDAL.SaveLogin(login);
+            bool iSaved = _Ldal.SaveLogin(login);
             if (iSaved)
             {
                 return Ok(login); // response me data return

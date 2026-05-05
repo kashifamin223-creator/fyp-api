@@ -25,7 +25,7 @@ public class InternDAL
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Userid", intern.userid);
-                cmd.Parameters.AddWithValue("@Age", intern.Age.ToString());
+                cmd.Parameters.AddWithValue("@Age", intern.Age);
                 cmd.Parameters.AddWithValue("@Gender", intern.Gender);
                 cmd.Parameters.AddWithValue("@status", intern.status);
                 cmd.Parameters.AddWithValue("@diagnosed", intern.diagnosed);

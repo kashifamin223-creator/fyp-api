@@ -10,15 +10,15 @@ namespace Common
     public class Harassment
     {
         public int userid { get; set; }
-        public bool Q1 { get; set; }
-        public bool Q2 { get; set; }
-        public bool Q3 { get; set; }
-        public bool Q4 { get; set; }
-        public bool Q5 { get; set; }
-        public bool Q6 { get; set; }
-        public bool Q7 { get; set; }
-        public bool Q8 { get; set; }
-        public bool Q9 { get; set; }
+        public int Q1 { get; set; }
+        public int Q2 { get; set; }
+        public int Q3 { get; set; }
+        public int Q4 { get; set; }
+        public int Q5 { get; set; }
+        public int Q6 { get; set; }
+        public int Q7 { get; set; }
+        public int Q8 { get; set; }
+        public int Q9 { get; set; }
 
     }
 }
